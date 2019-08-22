@@ -1,18 +1,18 @@
 {
-  "name": "cypress-testing-project",
-  "version": "1.0.0",
-  "description": "Automated testing with cypress",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "cypress"
-  ],
-  "author": "Bianca Rocha",
-  "license": "ISC",
-  "dependencies": {
-    "cypress": "^3.4.1",
-    "cypress-image-snapshot": "^3.1.1"
-  }
+	"name": "cypress-testing-project",
+	"version": "1.0.0",
+	"description": "Automated testing with cypress",
+	"main": "index.js",
+	"scripts": {
+		"cypress:open": "cypress open"
+	},
+	"keywords": [
+		"cypress"
+	],
+	"author": "Bianca Rocha",
+	"license": "ISC",
+	"dependencies": {
+		"cypress": "^3.4.1",
+		"cypress-image-snapshot": "^3.1.1"
+	}
 }
