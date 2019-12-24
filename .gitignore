@@ -1,1 +1,3 @@
 node_modules
+/cypress/integration/beliive-login.spec.js
+beliive-cypress-example.json
