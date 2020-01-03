@@ -10,6 +10,6 @@
   "videosFolder": "cypress/videos",
   "videoCompression": false,
   "video": false,
-  "videoUploadOnPasses": true,
+  "videoUploadOnPasses": false,
   "trashAssetsBeforeRuns": true
 }
