@@ -13,9 +13,10 @@ describe('Action Test', () => {
     // runs after each tests
   })
   it('submit developer name', function () {
-    cy.get('#developer-name').type('Name')
-    cy.get('#submit-button').scrollIntoView()
-    cy.get('#submit-button').click()
+    // cy.get('#developer-name').type('Name')
+    // cy.get('#submit-button').scrollIntoView()
+    // cy.get('#submit-button').click()
+    cy.submitDeveloper("Test")
 
     cy.get('.result-content').should('be.visible')
     cy.url().should('include', 'thank-you')
