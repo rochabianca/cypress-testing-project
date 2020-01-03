@@ -1,3 +1,5 @@
 node_modules
 /cypress/beliive-tests
 beliive-cypress-example.json
+
+*.DS_Store
