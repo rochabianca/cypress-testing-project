@@ -24,8 +24,8 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("submitDeveloper", (name) => {
-  cy.get('#developer-name').type(name)
-  cy.get('#submit-button').scrollIntoView()
-  cy.get('#submit-button').click()
+Cypress.Commands.add('loginToApp', (name, password) => {
+  cy.get('#user_login').type(name)
+  cy.get('#user_password').type(password)
+  cy.contains('Sign in').click()
 })
