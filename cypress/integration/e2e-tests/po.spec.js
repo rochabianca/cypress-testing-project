@@ -1,7 +1,9 @@
-import BasePage from '../../page-objects/BasePage'
-describe('BasePage test', () => {
-  it('Basepage should work', function () {
-    const basePage = new BasePage()
-    basePage.pause(5000)
+import HomePage from '../../page-objects/HomePage'
+describe('HomePage test', () => {
+  it('Homepage should work', function () {
+    const homePage = new HomePage()
+    homePage.visit()
+    homePage.pause(3000)
+    homePage.carouselIsVisible()
   })
 });
