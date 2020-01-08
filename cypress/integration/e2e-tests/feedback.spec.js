@@ -1,31 +1,25 @@
+import HomePage from '../../page-objects/HomePage'
+import FeedbackPage from '../../page-objects/FeedbackPage'
+
 describe('Feedback Test', () => {
+  const homePage = new HomePage();
+  const feedbackPage = new FeedbackPage();
+
   before(function () {
-    cy.visit('http://zero.webappsecurity.com/index.html')
-    cy.url().should('include', "index.html")
+    homePage.visit()
   })
 
   it('should display feedback form', function () {
-    cy.get('#feedback').as('Link_Feedback')
-
-    cy.get('@Link_Feedback').click()
-    cy.get('#feedback-title').should('be.visible')
-    cy.get('form').should('be.visible')
+    homePage.clickOnFeedback()
+    feedbackPage.feedbackFormIsVisible()
   })
 
   it('should submit feedback form', () => {
-    cy.get('#name').as('Input_Name')
-    cy.get('#email').as('Input_Email')
-    cy.get('#subject').as('Input_Subject')
-    cy.get('#comment').as('Input_Comment')
-
-    cy.get('@Input_Name').type('Just name')
-    cy.get('@Input_Email').type('Just email')
-    cy.get('@Input_Subject').type('Just subject')
-    cy.get('@Input_Comment').type('Just comment')
-    cy.contains('Send Message').click()
+    feedbackPage.fillFeedbackForm("Name", "email@email.com", "subject", "some text")
+    feedbackPage.submitFeedbackForm()
   })
 
   it('should display success message', () => {
-    cy.get('#feedback-title').should('be.visible')
-  });
+    feedbackPage.showSuccessMessage()
+  })
 });
