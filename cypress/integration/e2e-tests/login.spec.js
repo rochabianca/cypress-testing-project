@@ -1,51 +1,53 @@
-describe('Login Failed Test', () => {
-  before(function () {
-    cy.visit('http://zero.webappsecurity.com/index.html')
-    cy.url().should('include', "index.html")
-  })
+import HomePage from '../../page-objects/HomePage';
+import LoginPage from '../../page-objects/LoginPage';
+import TopNavbar from '../../page-objects/components/TopNavbar';
+import Tabs from '../../page-objects/components/Tabs';
 
-  it('should display login form', function () {
-    cy.get('#signin_button').click()
-    cy.get('#login_form').should('be.visible')
-  })
+describe('Login Test', () => {
+  const homePage = new HomePage()
+  const topNavbar = new TopNavbar()
+  const loginPage = new LoginPage()
+  const tabs = new Tabs()
 
-  it('should login to application', function () {
-    cy.loginToApp("Name", "Password")
-  })
+  describe('Login Failed Test', () => {
+    before(function () {
+      homePage.visit();
+    })
 
-  it('should display error message', function () {
-    cy.get('.alert-error').as('Error_Message')
-    cy.get('@Error_Message').should('be.visible')
-  })
-});
+    it('should display login form', function () {
+      topNavbar.clickOnSignInButton()
+    })
 
-describe('Login Success Test', () => {
-  before(function () {
-    cy.visit('http://zero.webappsecurity.com/index.html')
-    cy.url().should('include', "index.html")
-  })
+    it('should login to application', function () {
+      loginPage.login("Name", "Password")
+    })
 
-  it('should display login form', function () {
-    cy.get('#signin_button').click()
-    cy.get('#login_form').should('be.visible')
-  })
+    it('should display error message', function () {
+      loginPage.showErrorMessage()
+    })
+  });
 
-  it('should login to application', function () {
-    cy.loginToApp("username", "password")
-  })
+  describe('Login Success Test', () => {
+    before(function () {
+      homePage.visit()
+    })
 
-  it('should display navbar links after login', function () {
-    cy.get('#account_summary_tab').should('be.visible')
-    cy.get('#account_activity_tab').should('be.visible')
-    cy.get('#transfer_funds_tab').should('be.visible')
-    cy.get('#pay_bills_tab').should('be.visible')
-    cy.get('#money_map_tab').should('be.visible')
-    cy.get('#online_statements_tab').should('be.visible')
-  })
+    it('should display login form', function () {
+      topNavbar.clickOnSignInButton()
+    })
 
-  it('should loggout from application', function () {
-    cy.get('.icon-user').click()
-    cy.get('#logout_link').click()
-    cy.get('#homeMenu').should('be.visible')
-  })
+    it('should login to application', function () {
+      loginPage.login("username", "password")
+    })
+
+    it('should display navbar links after login', function () {
+      tabs.shouldBeVisible()
+    })
+
+    it('should loggout from application', function () {
+      cy.get('.icon-user').click()
+      cy.get('#logout_link').click()
+      homePage.carouselIsVisible()
+    })
+  });
 });
