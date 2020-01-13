@@ -1,8 +1,9 @@
 import BasePage from './BasePage';
+import { base_url } from '../fixtures/config';
 
 class HomePage extends BasePage {
   visit() {
-    cy.visit('http://zero.webappsecurity.com/index.html')
+    cy.visit(base_url)
     cy.url().should('include', "index.html")
   }
   carouselIsVisible() {
