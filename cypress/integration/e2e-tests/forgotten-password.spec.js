@@ -1,27 +1,33 @@
+import Homepage from '../../page-objects/HomePage';
+import TopNavbar from '../../page-objects/components/TopNavbar';
+import LoginPage from '../../page-objects/LoginPage';
+import ForgottenPasswordPage from '../../page-objects/ForgottenPasswordPage';
+
 describe('Forgotten Password', () => {
+  const homePage = new Homepage()
+  const topNavbar = new TopNavbar()
+  const loginPage = new LoginPage()
+  const forgottenPasswordPage = new ForgottenPasswordPage()
+
   before(function () {
-    cy.visit('http://zero.webappsecurity.com/index.html')
-    cy.url().should('include', "index.html")
+    homePage.visit()
   })
 
   it('should display login form', function () {
-    cy.get('#signin_button').click()
-    cy.get('#login_form').should('be.visible')
+    topNavbar.clickOnSignInButton()
   })
 
   it('should display forgotten password form', function () {
-    cy.contains('Forgot your password ?').click()
-    cy.get('#send_password_form').should('be.visible')
-    cy.url().should('include', 'forgot-password.html')
+    loginPage.clickForgotPasswordLink()
+    forgottenPasswordPage.shouldExist()
   })
 
   it('should submit forgotten password form', function () {
-    cy.get('#user_email').type('email@email.com')
-    cy.contains('Send Password').click()
+    forgottenPasswordPage.fillEmail('email@test.com')
+    forgottenPasswordPage.submitEmail()
   })
 
   it('should display success message', function () {
-    cy.get('h3').contains('Forgotten Password')
-    cy.url().should('include', 'forgotten-password-send.html')
+    forgottenPasswordPage.showSuccessMessage()
   })
 });
