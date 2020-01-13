@@ -2,6 +2,7 @@ import HomePage from '../../page-objects/HomePage';
 import LoginPage from '../../page-objects/LoginPage';
 import TopNavbar from '../../page-objects/components/TopNavbar';
 import Tabs from '../../page-objects/components/Tabs';
+import { username, password } from '../../fixtures/config';
 
 describe('Login Test', () => {
   const homePage = new HomePage()
@@ -37,7 +38,7 @@ describe('Login Test', () => {
     })
 
     it('should login to application', function () {
-      loginPage.login("username", "password")
+      loginPage.login(username, password)
     })
 
     it('should display navbar links after login', function () {
