@@ -8,7 +8,8 @@ describe('Navbar test', () => {
     cy.get('#onlineBankingMenu').as('Link_OnlineBanking')
 
     cy.get('@Link_OnlineBanking').click();
-    cy.get('h1').as('Title')
+    // cy.get('h1').as('Title')
+    cy.xpath('//h1').as('Title')
     cy.get('@Title').contains('Online Banking')
 
     cy.get('#online_banking_features').should('be.visible')
